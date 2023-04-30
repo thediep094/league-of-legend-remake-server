@@ -36,7 +36,13 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: (origin, callback) => {
+            if (origin === "https://league-of-legend.vercel.app") {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
         methods: ["GET", "POST"],
     },
 });
