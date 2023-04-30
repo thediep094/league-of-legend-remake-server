@@ -36,7 +36,7 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
     cors: {
-        origin: `https://league-of-legend-remake-client-9d4xch2z1-thediep094.vercel.app`,
+        origin: `https://league-of-legend.vercel.app`,
         methods: ["GET", "POST"],
     },
 });
