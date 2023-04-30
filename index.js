@@ -38,6 +38,7 @@ const io = new Server(server, {
     cors: {
         origin: `https://league-of-legend.vercel.app`,
         methods: ["GET", "POST"],
+        credentials: true,
     },
 });
 io.on("connection", (socket) => {
