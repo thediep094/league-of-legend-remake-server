@@ -37,6 +37,8 @@ const server = app.listen(port, () => {
 const io = new Server(server, {
     cors: {
         origin: `https://league-of-legend.vercel.app`,
+        allowedHeaders: ["my-custom-header"],
+        credentials: true,
         methods: ["GET", "POST"],
     },
 });
