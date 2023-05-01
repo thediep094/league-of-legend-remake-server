@@ -36,10 +36,10 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
     cors: {
-        origin: true,
+        origin: "https://league-of-legend.vercel.app",
+        methods: ["GET", "POST"],
         credentials: true,
     },
-    allowEIO3: true,
 });
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
