@@ -19,7 +19,11 @@ const connectDB = async () => {
 };
 connectDB();
 
-app.use(cors());
+app.use(
+    cors({
+        origin: "*",
+    }),
+);
 app.use("/images", express.static("public/uploads/images"));
 app.use("/thumbnails", express.static("public/uploads/thumbnails"));
 app.use("/news", express.static("public/uploads/news"));
