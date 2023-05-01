@@ -12,12 +12,6 @@
         "dest": "/"
       }
     ],
-    "middlewares": [
-      {
-        "name": "cors",
-        "handler": "cors"
-      }
-    ],
     "headers": [
       {
         "source": "/api/(.*)",
