@@ -36,7 +36,10 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
     cors: {
-        origin: "https://league-of-legend.vercel.app",
+        origin: [
+            "https://league-of-legend.vercel.app",
+            "http://localhost:3000",
+        ],
     },
     optionsSuccessStatus: 200,
 });
