@@ -2,10 +2,10 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const express = require("express");
-const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
 const app = express();
+const http = require("http").Server(app);
 const port = process.env.PORT;
 const router = require("./route/index");
 const url = process.env.URL;
@@ -30,11 +30,7 @@ app.get("/", (req, res) => {
     res.send("Hello World!?");
 });
 
-const server = app.listen(port, () => {
-    console.log(`App listening on http://localhost:${port}`);
-});
-
-const io = new Server(server, {
+const io = require("socket.io")(http, {
     cors: {
         origin: "*",
     },
@@ -56,4 +52,7 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("User Disconnected", socket.id);
     });
+});
+http.listen(port, () => {
+    console.log(`Server listening on ${port}`);
 });
