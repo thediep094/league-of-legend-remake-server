@@ -8,7 +8,6 @@ const { Server } = require("socket.io");
 const app = express();
 const port = process.env.PORT;
 const router = require("./route/index");
-app.use(cors());
 const url = process.env.URL;
 const connectDB = async () => {
     try {
@@ -20,6 +19,7 @@ const connectDB = async () => {
 };
 connectDB();
 
+app.use(cors());
 app.use("/images", express.static("public/uploads/images"));
 app.use("/thumbnails", express.static("public/uploads/thumbnails"));
 app.use("/news", express.static("public/uploads/news"));
@@ -36,12 +36,8 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
     cors: {
-        origin: [
-            "https://league-of-legend.vercel.app",
-            "http://localhost:3000",
-        ],
+        origin: "*",
     },
-    optionsSuccessStatus: 200,
 });
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
