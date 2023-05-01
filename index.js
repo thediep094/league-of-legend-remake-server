@@ -36,8 +36,9 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "https://league-of-legend.vercel.app",
     },
+    optionsSuccessStatus: 200,
 });
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
