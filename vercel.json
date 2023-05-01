@@ -11,5 +11,11 @@
         "src": "/(.*)",
         "dest": "/"
       }
+    ],
+    "middlewares": [
+      {
+        "name": "cors",
+        "handler": "cors"
+      }
     ]
 }
