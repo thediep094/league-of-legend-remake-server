@@ -37,7 +37,7 @@ const server = app.listen(port, () => {
 const io = new Server(server, {
     cors: {
         origin: `https://league-of-legend.vercel.app`,
-        allowedHeaders: ["my-custom-header"],
+        allowedHeaders: ["access-control-allow-origin"],
         credentials: true,
     },
 });
@@ -58,21 +58,4 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("User Disconnected", socket.id);
     });
-});
-
-app.use((req, res, next) => {
-    res.setHeader(
-        "Access-Control-Allow-Origin",
-        "https://league-of-legend.vercel.app",
-    );
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET, POST, OPTIONS, PUT, PATCH, DELETE",
-    );
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization",
-    );
-    res.setHeader("Access-Control-Allow-Credentials", true);
-    next();
 });
