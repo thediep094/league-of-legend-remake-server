@@ -25,15 +25,6 @@ app.use(
     }),
 );
 
-const corsOptions = {
-    origin: "https://league-of-legend.vercel.app/",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Content-Type",
-    credentials: true,
-    optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
 app.use("/images", express.static("public/uploads/images"));
 app.use("/thumbnails", express.static("public/uploads/thumbnails"));
 app.use("/news", express.static("public/uploads/news"));
@@ -46,7 +37,10 @@ app.get("/", (req, res) => {
 
 const io = require("socket.io")(http, {
     cors: {
-        origin: "*",
+        origin: "https://league-of-legend.vercel.app",
+        methods: ["GET", "POST"],
+        allowedHeaders: ["Content-Type"],
+        credentials: true,
     },
 });
 io.on("connection", (socket) => {
