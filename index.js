@@ -35,19 +35,11 @@ app.get("/", (req, res) => {
     res.send("Hello World!?");
 });
 
-const allowedOrigins = ["https://league-of-legend.vercel.app"];
-app.use(
-    cors({
-        origin: function (origin, callback) {
-            if (allowedOrigins.includes(origin)) {
-                callback(null, true);
-            } else {
-                callback(new Error("Not allowed by CORS"));
-            }
-        },
-    }),
-);
-
+const io = require("socket.io")(http, {
+    cors: {
+        origin: "*",
+    },
+});
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
